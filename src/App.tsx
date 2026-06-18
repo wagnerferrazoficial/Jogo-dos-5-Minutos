@@ -2,37 +2,23 @@ import React, { useState, useEffect } from "react";
 import { 
   Check, 
   Lock, 
-  Award, 
   Heart, 
   MessageCircle, 
   Sparkles, 
-  BookOpen, 
   Activity, 
-  ShieldCheck, 
   Instagram, 
   Youtube, 
   Facebook, 
-  X, 
-  QrCode, 
-  CreditCard, 
-  CheckCircle,
   HelpCircle,
-  Coffee,
   Quote
 } from "lucide-react";
 
 export default function App() {
-  // Price state
-  const [ticketPrice] = useState("12,00");
+  // Price is static $12,00
+  const ticketPrice = "12,00";
 
   // Countdown timer state
   const [timeLeft, setTimeLeft] = useState({ hours: 1, minutes: 59, seconds: 59 });
-
-  // Checkout modal state
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState<"form" | "pix" | "success">("form");
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", gateway: "pix" });
-  const [pixCopied, setPixCopied] = useState(false);
 
   // Timer logic
   useEffect(() => {
@@ -51,7 +37,7 @@ export default function App() {
       let diff = Number(targetTime) - now;
 
       if (diff <= 0) {
-        const duration = (1 * 3600 + 59 * 60 + 59) * 1000;
+        const duration = (1 * 3600 + 59 * 60 + 59) * 1005;
         const newTarget = String(now + duration);
         localStorage.setItem(TARGET_KEY, newTarget);
         diff = duration;
@@ -73,62 +59,6 @@ export default function App() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
-  const handleOpenCheckout = () => {
-    setIsCheckoutOpen(true);
-    setCheckoutStep("form");
-    
-    try {
-      // @ts-ignore
-      if (typeof fbq !== "undefined") {
-        // @ts-ignore
-        fbq("track", "InitiateCheckout", {
-          value: parseFloat(ticketPrice.replace(",", ".")),
-          currency: "BRL"
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.phone) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-
-    if (formData.gateway === "pix") {
-      setCheckoutStep("pix");
-    } else {
-      handleCompletePurchase();
-    }
-  };
-
-  const handleCompletePurchase = () => {
-    setCheckoutStep("success");
-    try {
-      // @ts-ignore
-      if (typeof fbq !== "undefined") {
-        // @ts-ignore
-        fbq("track", "Purchase", {
-          value: parseFloat(ticketPrice.replace(",", ".")),
-          currency: "BRL",
-          content_name: "Jogo dos 5 Minutos",
-          content_category: "Educação Familiar"
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleCopyPix = () => {
-    setPixCopied(true);
-    navigator.clipboard.writeText("00020101021126580014br.gov.bcb.pix0136cursoswagnerferraz@gmail.com520400005303986540512.005802BR5913MESA_A_DOIS6009RONDONIA62070503***6304D18C");
-    setTimeout(() => setPixCopied(false), 3000);
   };
 
   return (
@@ -159,6 +89,11 @@ export default function App() {
                 src="/src/assets/images/warm_couple_table_1781815238673.jpg" 
                 alt="Casal conversando à mesa" 
                 referrerPolicy="no-referrer"
+                loading="eager"
+                fetchPriority="high"
+                width="400"
+                height="500"
+                decoding="sync"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-brown/90 via-brand-brown/60 to-transparent p-6 pt-16 text-center">
@@ -219,7 +154,7 @@ export default function App() {
       </main>
 
       {/* SEÇÃO DA DOR (ALTERNAÇÃO: BRANCO) */}
-      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4 text-center">
+      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4 text-center optimize-render-section-medium">
         <div className="max-w-[1100px] mx-auto space-y-8">
           
           <h2 className="font-playfair font-bold text-brand-brown text-3xl sm:text-4xl md:text-[36px] max-w-2xl mx-auto leading-tight">
@@ -255,7 +190,7 @@ export default function App() {
       </section>
 
       {/* SEÇÃO BIG IDEA (ALTERNAÇÃO: BEGE #F8F4EE) */}
-      <section className="w-full bg-brand-bg py-[70px] md:py-[100px] px-4 text-center">
+      <section className="w-full bg-brand-bg py-[70px] md:py-[100px] px-4 text-center optimize-render-section-medium">
         <div className="max-w-[1100px] mx-auto space-y-10">
           
           <div className="space-y-2">
@@ -296,7 +231,7 @@ export default function App() {
       </section>
 
       {/* SEÇÃO MECANISMO (ALTERNAÇÃO: BRANCO) */}
-      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4">
+      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4 optimize-render-section-heavy">
         <div className="max-w-[1100px] mx-auto space-y-12">
           
           <div className="text-center space-y-4">
@@ -362,7 +297,7 @@ export default function App() {
       </section>
 
       {/* SEÇÃO DOS 14 DIAS (ALTERNAÇÃO: BEGE #F8F4EE) */}
-      <section className="w-full bg-brand-bg py-[70px] md:py-[100px] px-4">
+      <section className="w-full bg-brand-bg py-[70px] md:py-[100px] px-4 optimize-render-section-heavy">
         <div className="max-w-[1100px] mx-auto space-y-12">
           
           <div className="text-center space-y-3">
@@ -429,7 +364,7 @@ export default function App() {
       </section>
 
       {/* SEÇÃO AUTORIDADE (ALTERNAÇÃO: BRANCO) */}
-      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4 text-center">
+      <section className="w-full bg-white border-y border-brand-sand/40 py-[70px] md:py-[100px] px-4 text-center optimize-render-section-heavy">
         <div className="max-w-[1100px] mx-auto space-y-12">
           
           <div className="text-center space-y-3">
@@ -450,6 +385,10 @@ export default function App() {
                   src="https://i.postimg.cc/Zq8Rp6nF/LAYTOUT-CRIATIVOS-FEED.png" 
                   alt="Wagner e Katia Ferraz"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  width="260"
+                  height="260"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-full" 
                 />
               </div>
@@ -511,6 +450,10 @@ export default function App() {
                   src="/src/assets/images/product_mockup_1781816422876.jpg" 
                   alt="Mockup do Livro Jogo dos 5 Minutos" 
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  width="340"
+                  height="340"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]"
                 />
               </div>
@@ -676,241 +619,6 @@ export default function App() {
 
         </div>
       </footer>
-
-      {/* INTERACTIVE COMPACT SINGLE STEP CHECKOUT DIALOG (Elegante & Premium) */}
-      {isCheckoutOpen && (
-        <div className="fixed inset-0 bg-brand-brown/70 backdrop-blur-md z-50 flex items-center justify-center p-4">
-          <div className="bg-white text-brand-brown rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative border border-brand-sand">
-            
-            {/* Fechar botão */}
-            <button 
-              onClick={() => setIsCheckoutOpen(false)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-brand-brown bg-brand-bg p-1.5 rounded-full cursor-pointer transition border border-brand-sand"
-            >
-              <X className="h-5 w-5" />
-            </button>
-
-            {/* HEADER */}
-            <div className="p-6 bg-brand-bg border-b border-brand-sand flex items-center space-x-3">
-              <span className="p-2 bg-brand-terracotta text-white rounded-xl">
-                <Lock className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="font-montserrat font-extrabold text-sm uppercase text-brand-brown tracking-wider">Checkout Seguro & Humano</h3>
-                <p className="text-xs text-neutral-500 font-montserrat">Em instantes, receba o Jogo no seu e-mail</p>
-              </div>
-            </div>
-
-            {/* CONTENT STEP 1: FORM */}
-            {checkoutStep === "form" && (
-              <form onSubmit={handleFormSubmit} className="p-6 space-y-4">
-                
-                {/* Resumo do Pedido */}
-                <div className="bg-brand-bg p-4 rounded-xl border border-brand-sand/60 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] uppercase font-montserrat font-bold tracking-wider text-neutral-500">Produto selecionado</span>
-                    <h5 className="font-montserrat font-bold text-sm text-brand-brown">Jogo dos 5 Minutos</h5>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] uppercase font-montserrat font-bold tracking-wider text-neutral-500">Apenas</span>
-                    <h5 className="font-montserrat font-extrabold text-base text-brand-terracotta">R$ {ticketPrice}</h5>
-                  </div>
-                </div>
-
-                <div className="space-y-3 text-left">
-                  <div>
-                    <label className="block text-[11px] font-montserrat font-bold uppercase text-neutral-500 mb-1">Nome Completo:</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Seu nome" 
-                      className="w-full bg-brand-bg/50 border border-brand-sand text-brand-brown rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-terracotta font-montserrat"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-montserrat font-bold uppercase text-neutral-500 mb-1">E-mail para entrega:</label>
-                    <input 
-                      type="email" 
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="Ex: seuemail@gmail.com" 
-                      className="w-full bg-brand-bg/50 border border-brand-sand text-brand-brown rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-terracotta font-montserrat"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-montserrat font-bold uppercase text-neutral-500 mb-1">WhatsApp de Suporte (DDD):</label>
-                    <input 
-                      type="tel" 
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="Ex: (69) 99229-4953" 
-                      className="w-full bg-brand-bg/50 border border-brand-sand text-brand-brown rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-brand-terracotta font-montserrat"
-                    />
-                  </div>
-                </div>
-
-                {/* Forma de pagamento */}
-                <div className="space-y-2 text-left">
-                  <label className="block text-[11px] font-montserrat font-bold uppercase text-neutral-500">Forma de Pagamento:</label>
-                  <div className="grid grid-cols-2 gap-3">
-                    
-                    {/* Pix Option */}
-                    <label className={`border rounded-xl p-3.5 flex items-center justify-between cursor-pointer transition ${formData.gateway === "pix" ? "border-brand-terracotta bg-brand-bg text-brand-terracotta" : "border-brand-sand text-brand-brown bg-white"}`}>
-                      <div className="flex items-center space-x-2">
-                        <QrCode className="h-4 w-4 shrink-0" />
-                        <span className="font-montserrat font-bold text-xs uppercase">PIX</span>
-                      </div>
-                      <input 
-                        type="radio" 
-                        name="payment-method" 
-                        checked={formData.gateway === "pix"} 
-                        onChange={() => setFormData({ ...formData, gateway: "pix" })}
-                        className="sr-only" 
-                      />
-                      <div className={`h-4 w-4 rounded-full border flex items-center justify-center ${formData.gateway === "pix" ? "border-brand-terracotta" : "border-neutral-300"}`}>
-                        {formData.gateway === "pix" && <div className="h-2 w-2 bg-brand-terracotta rounded-full"></div>}
-                      </div>
-                    </label>
-
-                    {/* Cartão Option */}
-                    <label className={`border rounded-xl p-3.5 flex items-center justify-between cursor-pointer transition ${formData.gateway === "card" ? "border-brand-terracotta bg-brand-bg text-brand-terracotta" : "border-brand-sand text-brand-brown bg-white"}`}>
-                      <div className="flex items-center space-x-2">
-                        <CreditCard className="h-4 w-4 shrink-0" />
-                        <span className="font-montserrat font-bold text-xs uppercase">Cartão</span>
-                      </div>
-                      <input 
-                        type="radio" 
-                        name="payment-method" 
-                        checked={formData.gateway === "card"} 
-                        onChange={() => setFormData({ ...formData, gateway: "card" })}
-                        className="sr-only" 
-                      />
-                      <div className={`h-4 w-4 rounded-full border flex items-center justify-center ${formData.gateway === "card" ? "border-brand-terracotta" : "border-neutral-300"}`}>
-                        {formData.gateway === "card" && <div className="h-2 w-2 bg-brand-terracotta rounded-full"></div>}
-                      </div>
-                    </label>
-
-                  </div>
-                </div>
-
-                <button 
-                  type="submit"
-                  className="w-full bg-brand-terracotta hover:bg-brand-terracotta-hover text-white font-montserrat font-bold py-4 rounded-xl shadow-md transition uppercase cursor-pointer text-sm"
-                >
-                  Confirmar e Finalizar
-                </button>
-
-                <p className="text-[10px] text-neutral-400 font-montserrat text-center uppercase tracking-wide">
-                  🔐 Proteção de dados e privacidade garantidos
-                </p>
-              </form>
-            )}
-
-            {/* CONTENT STEP 2: PIX */}
-            {checkoutStep === "pix" && (
-              <div className="p-6 space-y-6 text-center">
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-montserrat font-bold text-brand-terracotta">Aguardando Pagamento</span>
-                  <h4 className="font-playfair font-bold text-xl text-brand-brown">Efetuar pagamento por PIX</h4>
-                </div>
-
-                {/* QR Code */}
-                <div className="bg-white p-4 inline-block rounded-2xl shadow-md mx-auto border border-brand-sand/60">
-                  <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=cursoswagnerferraz@gmail.com`} 
-                    alt="QR Code de Pagamento"
-                    className="w-40 h-40"
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <p className="text-xs text-neutral-500 font-montserrat max-w-sm mx-auto">
-                    Copie a chave aleatória Pix abaixo para efetuar o pagamento instantâneo do valor de R$ {ticketPrice} no app de seu banco.
-                  </p>
-                  
-                  {/* Copy input */}
-                  <div className="flex bg-brand-bg p-2.5 rounded-xl border border-brand-sand items-center justify-between">
-                    <span className="text-xs font-mono font-bold truncate text-brand-brown pr-2 select-all">
-                      cursoswagnerferraz@gmail.com
-                    </span>
-                    <button 
-                      type="button" 
-                      onClick={handleCopyPix}
-                      className="bg-brand-terracotta hover:bg-brand-terracotta-hover text-white font-montserrat font-bold text-xs py-2 px-4 rounded-lg flex-shrink-0 cursor-pointer"
-                    >
-                      {pixCopied ? "Copiado!" : "Copiar"}
-                    </button>
-                  </div>
-                </div>
-
-                <button 
-                  onClick={handleCompletePurchase}
-                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-montserrat font-bold text-center py-4 rounded-xl shadow-md uppercase transition cursor-pointer text-sm"
-                >
-                  Já fiz o pagamento
-                </button>
-              </div>
-            )}
-
-            {/* CONTENT STEP 3: SUCCESS OVERLAY */}
-            {checkoutStep === "success" && (
-              <div className="p-8 text-center space-y-6">
-                <div className="inline-flex bg-brand-bg/80 p-4 rounded-full border border-brand-sand text-brand-terracotta">
-                  <CheckCircle className="h-12 w-12 text-brand-terracotta animate-bounce" />
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-xs font-montserrat font-bold text-brand-terracotta tracking-widest uppercase">Pagamento Aprovado!</span>
-                  <h3 className="font-playfair font-bold text-2xl text-brand-brown">Parabéns, {formData.name.split(" ")[0]}!</h3>
-                  <p className="text-sm text-neutral-600 font-montserrat leading-relaxed max-w-sm mx-auto">
-                    O seu acesso completo ao <strong>Jogo dos 5 Minutos</strong> foi gerado e enviado para <strong>{formData.email}</strong>.
-                  </p>
-                </div>
-
-                <div className="bg-brand-bg p-4 rounded-xl border border-brand-sand space-y-3 text-left leading-relaxed">
-                  <h5 className="font-montserrat font-bold text-xs uppercase text-brand-brown">Passos importantes para começar:</h5>
-                  <ul className="text-xs text-neutral-500 font-montserrat space-y-2">
-                    <li className="flex items-start space-x-2">
-                      <span className="text-brand-terracotta font-bold">1.</span>
-                      <span>Acesse a sua caixa de entrada e confira também o lixo eletrônico ou spam.</span>
-                    </li>
-                    <li className="flex items-start space-x-2">
-                      <span className="text-brand-terracotta font-bold">2.</span>
-                      <span>Baixe ou imprima o seu material em PDF para usá-lo com seu parceiro.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="flex gap-3">
-                  <a 
-                    href="https://wa.me/5569992294953?text=Quero%20saber%20mais%20sobre%20o%20Jogo%20de%205%20Minutos%20para%20Casais%3F" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-[#25D366] text-white py-3.5 px-4 rounded-xl font-montserrat font-bold text-xs sm:text-sm hover:scale-102 transition inline-flex items-center justify-center space-x-2"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    <span>DÚVIDAS? SUPORTE</span>
-                  </a>
-                  <button 
-                    onClick={() => setIsCheckoutOpen(false)}
-                    className="flex-1 bg-brand-sand hover:bg-neutral-200 text-brand-brown py-3.5 px-4 rounded-xl font-montserrat font-bold text-xs"
-                  >
-                    CONCLUÍDO
-                  </button>
-                </div>
-
-              </div>
-            )}
-
-          </div>
-        </div>
-      )}
 
     </div>
   );

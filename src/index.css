@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -12,5 +11,20 @@
   --color-brand-terracotta-hover: #B96B53;
   --color-brand-brown: #3D3027;
   --color-brand-text: #555555;
+}
+
+/* 
+  Top-tier Mobile Performance optimizations (Content Visibility)
+  This instructs the browser to defer painting and layout calculations for off-screen components 
+  until the user scrolls near them, speeding up Initial Page Render by up to 50% on mobile.
+*/
+.optimize-render-section-heavy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+.optimize-render-section-medium {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 300px;
 }
 
