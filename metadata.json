@@ -1,0 +1,6 @@
+{
+  "name": "LT Essencial",
+  "description": "Metodologia completa de formação de casais e estruturação familiar por Wagner Ferraz e Katia Ferraz.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

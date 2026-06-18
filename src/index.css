@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-opensans: "Montserrat", sans-serif; /* Fallback alias to preserve any opensans usage as montserrat */
+
+  --color-brand-bg: #F8F4EE;
+  --color-brand-sand: #E8DCCB;
+  --color-brand-terracotta: #C97B63;
+  --color-brand-terracotta-hover: #B96B53;
+  --color-brand-brown: #3D3027;
+  --color-brand-text: #555555;
+}
+
