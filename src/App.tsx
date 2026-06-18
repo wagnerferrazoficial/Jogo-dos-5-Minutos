@@ -504,6 +504,21 @@ export default function App() {
               Hoje você não precisa investir em mentorias ou terapias complexas de centenas de reais.
             </p>
 
+            {/* FATOR VALORIZAÇÃO: MOCKUP DO LIVRO / JOGO */}
+            <div className="my-6 max-w-[280px] sm:max-w-[340px] mx-auto rounded-2xl overflow-hidden border border-brand-sand shadow-inner bg-brand-bg p-3">
+              <div className="relative aspect-square rounded-xl overflow-hidden shadow-md bg-white">
+                <img 
+                  src="/src/assets/images/product_mockup_1781816422876.jpg" 
+                  alt="Mockup do Livro Jogo dos 5 Minutos" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                />
+              </div>
+              <span className="block text-[11px] font-montserrat font-extrabold text-brand-terracotta tracking-wider uppercase mt-3">
+                📖 MATERIAL DIGITAL EM PDF ENTREGUE NA HORA
+              </span>
+            </div>
+
             {/* Itens Incluídos no Box */}
             <div className="grid grid-cols-2 gap-4 text-left max-w-md mx-auto py-3">
               {[
@@ -554,7 +569,7 @@ export default function App() {
                 🛡 GARANTIA
               </div>
               <p className="font-montserrat text-[13px] sm:text-sm leading-relaxed text-neutral-500">
-                <strong>Faça os 14 dias completos.</strong> Se não perceber nenhum valor real para a sua relação, solicite o reembolso imediato dentro do prazo de garantia de 7 dias protegidos por lei.
+                <strong>Faça os 14 dias completos.</strong> Se não perceber nenhum valor real para a sua relação, solicite o reembolso imediato dentro do prazo de garantia de 14 dias.
               </p>
             </div>
 
