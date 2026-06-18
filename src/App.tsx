@@ -86,7 +86,7 @@ export default function App() {
           <div className="md:col-span-5 flex justify-center">
             <div className="relative max-w-sm md:max-w-full rounded-2xl overflow-hidden shadow-xl border border-brand-sand/40 aspect-[4/5] md:aspect-auto">
               <img 
-                src="/src/assets/images/warm_couple_table_1781815238673.jpg" 
+                src="https://i.postimg.cc/sXy69B7n/LT-Essencial-Google-AI-Studio.png" 
                 alt="Casal conversando à mesa" 
                 referrerPolicy="no-referrer"
                 loading="eager"
@@ -444,20 +444,20 @@ export default function App() {
             </p>
 
             {/* FATOR VALORIZAÇÃO: MOCKUP DO LIVRO / JOGO */}
-            <div className="my-6 max-w-[280px] sm:max-w-[340px] mx-auto rounded-2xl overflow-hidden border border-brand-sand shadow-inner bg-brand-bg p-3">
-              <div className="relative aspect-square rounded-xl overflow-hidden shadow-md bg-white">
+            <div className="my-6 max-w-[280px] sm:max-w-[400px] mx-auto rounded-2xl overflow-hidden border border-brand-sand/50 bg-brand-bg/40 p-4 shadow-sm">
+              <div className="relative flex items-center justify-center">
                 <img 
-                  src="/src/assets/images/product_mockup_1781816422876.jpg" 
+                  src="https://i.postimg.cc/y6TdTw4c/Criacao-de-Imagem-para-Meta-Ads-Google-Gemini.png" 
                   alt="Mockup do Livro Jogo dos 5 Minutos" 
                   referrerPolicy="no-referrer"
                   loading="lazy"
-                  width="340"
-                  height="340"
+                  width="400"
+                  height="300"
                   decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                  className="max-w-full h-auto object-contain transition-transform duration-500 hover:scale-[1.03] select-none pointer-events-none"
                 />
               </div>
-              <span className="block text-[11px] font-montserrat font-extrabold text-brand-terracotta tracking-wider uppercase mt-3">
+              <span className="block text-[11px] font-montserrat font-extrabold text-brand-terracotta tracking-wider uppercase mt-4">
                 📖 MATERIAL DIGITAL EM PDF ENTREGUE NA HORA
               </span>
             </div>
